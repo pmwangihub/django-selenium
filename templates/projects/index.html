@@ -1,0 +1,203 @@
+{% extends "overview.html" %}
+{% load static %}
+{% block overview %}
+    <div class="container py-md-5">
+        <main>
+            <div class="row g-5">
+                <div class="col-lg-3">
+                    <h5 class="text-body-emphasis">Competencies</h5>
+                    <div class="d-flex flex-column gap-2 mt-5">
+                        <div class="progress">
+                            <div class="progress-bar bg-success w-85">Python 95%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info text-dark w-95">React 95%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning text-dark w-75">Php 75%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger w-100">JavaScript 100%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-dark w-100">Django 100%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary w-95">Docker 95%</div>
+                        </div>
+                    </div>
+                    <div class="mt-5 small">
+                        <p>
+                            If you are interested in collaborating, feel free to invite me to your development team or join my GitHub account.
+                        </p>
+                        <a href="mailto:pminnovest@gmail.com?subject=Invite%20to%20Development%20Team"
+                           class="btn btn-sm btn-danger mb-2">Invite Me to Your Team</a>
+                        <a href="https://github.com/mwangihub/" class="btn btn-sm btn-dark">Join Me on GitHub</a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <caption>List of projects</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Project</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Language</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <i class="bi bi-star fw-bold text-primary mx-2 fs-5"></i>
+                                            <div class="ms-2 me-auto">
+                                                <div>
+                                                    <a href="{% url 'jumia:jumia_case_study' %}"
+                                                       class="text-decoration-none">Jumia Case study</a>
+                                                </div>
+                                                <div>
+                                                    <p>
+                                                        The scrape events demonstrate a sample of data collected during the scraping process of Jumia’s online shop. This data collection is automated using a Python task scheduler and stored in the database asynchronously.
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p class="small mb-0">
+                                                        <strong>Date:</strong> 28/07/2024
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge text-bg-primary rounded-pill">Active</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded">
+                                                <i class="bx bxl-python fs-5"></i> Python
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded">
+                                                <i class='bx bxl-javascript fs-5'></i> JavaScript
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded">
+                                                <i class="bx bxl-react fs-5"></i> React
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded">
+                                                <i class="bx bxl-django fs-5"></i> Django
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-dark-subtle border border-dark-subtle rounded">
+                                                <i class="bx bxl-steam fs-5"></i> Celery
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <i class="bi bi-star fw-bold text-primary mx-2 fs-5"></i>
+                                            <div class="ms-2 me-auto">
+                                                <div>
+                                                    <a href="https://github.com/mwangihub/learn-data-analytics"
+                                                       class="text-decoration-none">Learn Data Analytics</a>
+                                                </div>
+                                                <div>
+                                                    <p>
+                                                        Simple project to learn Data analytics. Using RAW SQL Query with PostgreSQL. There are
+                                                        few steps upto advance level that one must follow.
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p class="small mb-0">
+                                                        <strong>Updated:</strong> 14/07/2024
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge text-bg-success rounded-pill">On progress</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded">
+                                                <i class="bx bxl-python fs-5"></i> Python
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded">
+                                                <i class='bx bxl-postgresql fs-5'></i> PostgreSQL.
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded">
+                                                <i class="bx bxl-data fs-5"></i> MySQL
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded">
+                                                <i class="bx bxl-django fs-5"></i> Django
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-dark-subtle border border-dark-subtle rounded">
+                                                <i class='bx bxs-book-content fs-5'></i> Excel
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <i class="bi bi-star fw-bold text-primary mx-2 fs-5"></i>
+                                            <div class="ms-2 me-auto">
+                                                <div>
+                                                    <a href="https://github.com/mwangihub/react-native-v0.74"
+                                                       class="text-decoration-none">React Native: Mobile Development</a>
+                                                </div>
+                                                <div>
+                                                    <p>
+                                                        This repository contains a mobile app developed using React
+                                                        Native (v0.74) and Expo SDK (v51.0.0). Built with efficiency and
+                                                        scalability in mind, it leverages the latest features of
+                                                        React Native and Expo to deliver a best case scenario of
+                                                        authentication experience.
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p class="small mb-0">
+                                                        <strong>Updated:</strong> 25/06/2024
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge text-bg-primary rounded-pill">Active</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded">
+                                                <i class="bx bxl-react fs-5"></i> React
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded">
+                                                <i class='bx bxl-redux fs-5'></i> Redux
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded">
+                                                <i class="bx bxl-javascript fs-5"></i> JavaScript
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded">
+                                                <i class="bx bxl-django fs-5"></i> Django
+                                            </span>
+                                            <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-dark-subtle border border-dark-subtle rounded">
+                                                <i class='bx bxs-book-android fs-5'></i> Android
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock overview %}

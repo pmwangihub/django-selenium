@@ -1,0 +1,67 @@
+
+# Yet another mark-up language
+volumes:
+  django_web_media: {}
+  django_web_static: {}
+  production_traefik: {}
+  
+networks:
+  web:
+    driver: bridge
+    
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./docker/django/DockerFile
+    env_file:
+      - .env
+    networks:
+      - web
+    command: /entrypoint.sh
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/DockerFile
+    image: django_web_nginx
+    depends_on:
+      -  traefik
+    # Maybe this can be exposed in the DockerFile
+    ports:
+      # - "80:80"
+      -  "8081:80"
+    # Added this for container communications
+    networks:
+      - web
+    volumes:
+      - django_web_media:/usr/share/nginx/media:ro
+      # If not AWS
+      - django_web_static:/usr/share/nginx/static:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.traefik`)"
+      - "traefik.http.services.nginx.loadbalancer.server.port=80"
+
+  traefik:
+    build:
+      context: .
+      dockerfile: ./docker/traefik/DockerFile
+    # Maybe this can be exposed in the DockerFile
+    ports:
+      - '8082:80' # should be 80:80
+      - '8080:8080' # Dashboard for traefik
+      # If flower (Celery worker or beat)
+      - '0.0.0.0:5555:5555' # flower
+    # Added this for container communications
+    networks:
+      - web
+    volumes:
+      # Store certificates
+      - production_traefik:/etc/traefik/acme
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+
+

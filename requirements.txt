@@ -1,0 +1,41 @@
+# python -m venv .venv
+
+# source .venv/Scripts/activate
+
+# source .venv/Scripts/activate
+
+# .\.venv\Scripts\activate
+
+# pip install -r requirements.txt --no-cache-dir
+
+#  python revoke.py  && celery -A src worker --loglevel=info
+#  celery -A src beat --loglevel=info
+# python main.py
+
+# requirements.txt
+
+Django
+djangorestframework
+django-environ
+djlint
+django-cors-headers
+django-celery-results
+django-extensions
+django-celery-beat
+
+celery
+whitenoise
+Pillow
+psycopg2-binary
+gunicorn
+uvicorn
+uvicorn[standard]
+uvicorn-worker
+rav
+redis
+webdriver-manager
+beautifulsoup4
+selenium
+
+
+

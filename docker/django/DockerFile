@@ -1,0 +1,39 @@
+FROM python:3.12.4-slim-bookworm as base
+
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+FROM base as builder
+
+RUN apt-get update && apt-get install --no-install-recommends -y build-essential libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt /app/requirements.txt
+
+WORKDIR /app
+
+RUN pip wheel --wheel-dir /wheels -r requirements.txt
+
+# Python 'run' stage
+FROM base as final
+
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+RUN apt-get update && apt-get install --no-install-recommends -y libpq-dev gettext \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY --from=builder /wheels /wheels
+
+RUN pip install --no-cache-dir --no-index --find-links=/wheels /wheels/* \
+	&& rm -rf /wheels
+
+COPY ./docker/django/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r$//g' /entrypoint.sh && chmod +x /entrypoint.sh
+
+# EXPOSE 5000
+
+COPY . /app/

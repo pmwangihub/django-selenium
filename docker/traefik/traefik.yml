@@ -1,0 +1,34 @@
+log:
+  level: INFO
+
+api:
+  dashboard: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+  dashboard:
+    address: ":8080"
+
+
+http:
+  routers:
+    web-router:
+      # http://django.traefik
+      rule: "Host(`django.traefik`)"
+      entryPoints:
+        - web
+      service: django
+
+  services:
+    django:
+      loadBalancer:
+        servers:
+          - url: "http://django:5000"
+
+providers:
+  file:
+    filename: /etc/traefik/traefik.yml
+    watch: true

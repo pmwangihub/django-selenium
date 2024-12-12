@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <main id="main">
+        {% include "partials/overview_header.html" %}
+        {% block overview %}
+        {% endblock overview %}
+    </main>
+    {% include "partials/overview_footer.html" %}
+{% endblock content %}

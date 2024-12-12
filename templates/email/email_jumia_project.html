@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+        }
+        .header {
+            background-color: #007bff;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            color: #333333;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Peter Mwangi</h1>
+            </div>
+            <div class="content">
+                <h2>You have received email from {{ email }}</h2>
+                <p>Name {{ name }}</p>
+                <p>{{ message }}</p>
+            </div>
+            <div class="footer">
+                <p>
+                    &copy; <script type="text/javascript">document.write(new Date().getFullYear());</script>
+                    pminnovest. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

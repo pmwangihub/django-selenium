@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "home/project_header.html" %}
+{% include "home/messages.html" %}
+<div class="container my-5">
+    <div class="rounded">
+        <h1 class="display-5 fw-normal">Jumia scrape</h1>
+        <p>For the purpose of scraping locally.</p>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="col-sm-12">
+                    <div class="p-5 mb-4 bg-light rounded-3">
+                        <h5 class="mb-3">Scrape with categories</h5>
+                        <form class="mb-5" id="scrapeForm" action="{% url 'jumia:jumia_scrape' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row gy-3">
+                                <!-- Category Select -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Select a Category:</label>
+                                        <select id="category" name="category" class="form-select"
+                                            onchange="checkCustomOption(this)">
+                                            <option value="laptops/dell">Laptops/Dell</option>
+                                            <option value="other-tablets">Tablets</option>
+                                            <option value="smartphones">Smartphones</option>
+                                            <option value="electronics-headphone">Electronics headphone</option>
+                                            <option value="cell-phones">Cell phones</option>
+                                            <option value="mobile-phone-headsets">Ear phones</option>
+                                            <option value="home-office-appliances">Appliances Gen</option>
+                                            <option value="freezers">Freezers</option>
+                                            <option value="mens-jeans">Mens jeans</option>
+                                            <option value="womens-dresses">Womens dresses</option>
+                                            <option value="laptops/hp">Laptops/hp</option>
+                                            <option value="custom">Other (Enter Custom Category)</option>
+                                        </select>
+                                        <small class="text-muted">Be sure not mix categories</small>
+                                    </div>
+                                    <!-- Custom Category Input -->
+                                    <div id="customCategoryDiv" class="mb-3 d-none">
+                                        <label for="customCategory" class="form-label">Custom url params:</label>
+                                        <input type="text" id="customCategory" name="customCategory"
+                                            class="form-control" placeholder="Enter custom category"
+                                            oninput="setCategoryName(this.value)">
+                                    </div>
+                                </div>
+                                <!-- Category Name Input -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Category Name</label>
+                                        <input type="text" id="category_name" name="category_name" class="form-control">
+                                        <small class="text-muted">Be sure not mix categories</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Number of pages</label>
+                                        <input type="number" name="pages" value="3" max="3" class="form-control">
+                                        <small class="text-muted">Number of pages to be scraped</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-sm" type="submit">Scrape</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item">
+                        <a class="small" target="_blank" href="https://pminnovest.com/jumia/jumia-case-study/">View
+                            Jumia scrape project &raquo;</a>
+                    </li>
+                </ul>
+                {% if categories %}
+                <ul class="list-group list-group-flush mb-3">
+                    <h5 class="mx-2">Saved Categories</h5>
+                    {% for category in categories %}<li class="list-group-item text-capitalize">{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block customJS %}
+<script>
+    window.addEventListener('load', () => {
+        const scrapeForm = document.getElementById("scrapeForm");
+        scrapeForm.reset();
+    });
+    function checkCustomOption(selectElement) {
+        const customCategoryDiv = document.getElementById("customCategoryDiv");
+        const categoryNameInput = document.getElementById("category_name");
+        console.log(selectElement.value);
+        if (selectElement.value === "custom") {
+            customCategoryDiv.classList.remove("d-none");
+            categoryNameInput.value = "";
+        } else {
+            customCategoryDiv.classList.add("d-none");
+            categoryNameInput.value = selectElement.options[selectElement.selectedIndex].text;
+        }
+    }
+
+    function setCategoryName(customValue) {
+        const categoryNameInput = document.getElementById("category_name");
+        const formattedCategoryName = customValue.replace(/-/g, " ");
+        categoryNameInput.value = formattedCategoryName;
+    }
+</script>
+{% endblock customJS %}

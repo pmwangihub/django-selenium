@@ -1,0 +1,48 @@
+scripts:
+
+  vite: cd react && npm run dev
+  
+  react: cd react && npm run build
+
+  cworker: python revoke.py && celery -A src worker --loglevel=info --pool=solo
+
+  cbeat: celery -A src beat --loglevel=info
+
+  rcelery: cd app/projects && python revoke_celery_tasks.py
+
+  gunicorn: cd src  gunicorn --bind 0.0.0.0:8000 app.asgi -w 4 -k uvicorn.workers.UvicornWorker
+
+  test: cd src python manage.py runserver 0.0.0.0:8000
+
+  init: 
+  - cd src 
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - python manage.py collectstatic
+  - python manage.py createsuperuser
+
+  static: python manage.py collectstatic
+
+  user: python manage.py createsuperuser
+
+  server: 
+      - python manage.py runserver localhost:8000
+
+  migrate: python manage.py makemigrations && python manage.py migrate
+
+  freeze: python -m pip freeze
+
+  shell: python manage.py shell_plus
+
+  installs:
+    pip install -r requirements.txt
+
+  build: docker build -f Dockerfile -t salami .
+
+  docker_dev: docker run --env-file .env-dev -p 8001:8000 --rm --name salami-dev -it salami
+
+  docker_prod: docker run --env-file .env-prod -p 8002:8000 --rm --name salami-prod -it salami
+
+  build_push: 
+    - docker build --platform=linux/amd64 -f Dockerfile -t pminnovest/salami .
+    - docker push pminnovest/salami --all-tags

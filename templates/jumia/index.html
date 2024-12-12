@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block reactJs %}
+  <script type="module" src="{% static 'js/jumia_app.min.js' %}"></script>
+{% endblock reactJs %}
+{% block reactCSS %}
+  <link href="{% static 'css/jumia.css' %}" rel="stylesheet">
+{% endblock reactCSS %}
+{% block content %}
+  <div id="jumia_case_study"></div>
+{% endblock content %}

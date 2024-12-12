@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        body {
+    font-family: "Ubuntu", sans-serif;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #0448e7;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h2 {
+            color: #333;
+        }
+        .product-list {
+            margin-top: 20px;
+        }
+        .list-group-flush {
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        .list-group-item {
+            border: 0;
+            padding: 10px;
+            background-color: transparent;
+        }
+        .footer {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        .footer a {
+            color: #0448e7;
+            text-decoration: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <div class="header">
+                <h1>
+                    <a href="https://jumia.pminnovest.com">Jumia Case Study by Peter Mwangi</a>
+                </h1>
+                <p>
+                    Scraped products from <a href="https://www.jumia.co.ke" target="_blank">www.jumia.co.ke</a>
+                </p>
+            </div>
+            <h2>Hello {{ user.email }},</h2>
+            <p>Here are the latest updates for the products you subscribed to:</p>
+            <div class="product-list">
+                {% for product, scrape_events in subscribed_products.items %}
+                    <h3>{{ product.product_name }}</h3>
+                    <ul class="list-group list-group-flush">
+                        {% for event in scrape_events %}
+                            <li class="list-group-item">{{ event.created_at }} - Price: {{ event.current_price }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </div>
+            <div class="footer">
+                <p>
+                    This email is part of an innovative web scraping project that tracks product price changes on Jumia.
+                    If you're interested in similar complex projects or need IT solutions, feel free to reach out!
+                </p>
+                <p>
+                    Contact me via <a href="mailto:pminnovest@gmail.com">pminnovest@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
